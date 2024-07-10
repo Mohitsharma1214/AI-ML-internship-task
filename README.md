@@ -18,23 +18,28 @@ This repository contains the code to extract the center area (cut-out area) from
 ## Example
 
 ```python
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
+import numpy as np #type: ignore
+import matplotlib.pyplot as plt #type: ignore
+import cv2 #type: ignore
 
-def extract_center_area(image_path):
-    image = cv2.imread(image_path)
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, binary = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)
-    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    largest_contour = max(contours, key=cv2.contourArea)
-    mask = np.zeros_like(gray)
-    cv2.drawContours(mask, [largest_contour], -1, 255, thickness=cv2.FILLED)
+def extract_center_area(image, output_path):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)    # Convert to grayscale
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)  # Apply Gaussian blur to reduce noise
+    _, binary = cv2.threshold(blurred, 110, 255, cv2.THRESH_BINARY_INV) # Apply threshold to get binary image
+    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)   # Find contours    
+    largest_contour = max(contours, key=cv2.contourArea) # Get the largest contour which will be the cut-out area
+    mask = np.zeros_like(gray)  # Create a mask for the largest contour
+    cv2.drawContours(mask, [largest_contour], -1, 255, thickness=cv2.FILLED)    # Extract the center area using the mask 
     center_area = cv2.bitwise_and(image, image, mask=mask)
-    x, y, w, h = cv2.boundingRect(largest_contour)
+    x, y, w, h = cv2.boundingRect(largest_contour) # Find bounding box coordinates to crop the center area
     cropped_center_area = center_area[y:y+h, x:x+w]
+    cv2.imwrite(output_path, cropped_center_area)
+    
     return cropped_center_area
-
-image_path = 'images/your_image.png'
-center_area = extract_center_area(image_path)
-cv2.imwrite('output/center_area.png', center_area)
+image = cv2.imread('path to ur image')
+output_path = 'center_area1.png'
+center_area1 = extract_center_area(image, output_path)
+plt.figure(figsize=(15, 10))
+plt.subplot(2, 2, 1), plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)), plt.title('Original Image ')
+plt.subplot(2, 2, 3), plt.imshow(cv2.cvtColor(center_area1, cv2.COLOR_BGR2RGB)), plt.title('Center Area ')
+plt.show()
