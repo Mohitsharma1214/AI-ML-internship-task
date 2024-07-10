@@ -46,6 +46,6 @@ plt.subplot(2, 2, 3), plt.imshow(cv2.cvtColor(center_area1, cv2.COLOR_BGR2RGB)),
 plt.show()
 
 Input:-
-(`Extractimage.ipynb`)
+(`[Extractimage.ipynb](https://github.com/Mohitsharma1214/AI-ML-internship-task/blob/main/Input-image)`)
 Output:-
-(`center_area1.png`) 
+(`[center_area1.png](https://github.com/Mohitsharma1214/AI-ML-internship-task/blob/main/center_area1.png)`) 
