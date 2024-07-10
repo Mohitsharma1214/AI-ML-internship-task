@@ -44,3 +44,8 @@ plt.figure(figsize=(15, 10))
 plt.subplot(2, 2, 1), plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)), plt.title('Original Image ')
 plt.subplot(2, 2, 3), plt.imshow(cv2.cvtColor(center_area1, cv2.COLOR_BGR2RGB)), plt.title('Center Area ')
 plt.show()
+
+Input:-
+(`Extractimage.ipynb`)
+Output:-
+(`center_area1.png`) 
