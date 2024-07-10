@@ -12,8 +12,9 @@ This repository contains the code to extract the center area (cut-out area) from
 
 ## Usage
 1. Clone the repository.
-2. Place your images in the `images` folder.
-3. Run the `extract_center_area.py` script.
+2. Place your image path in the `images` folder.
+3. Update the code with the correct path of your `images.jpg`.
+4. Run the `extract_center_area.py` script.
 
 ## Example
 
