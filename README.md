@@ -45,7 +45,17 @@ plt.subplot(2, 2, 1), plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)), plt.ti
 plt.subplot(2, 2, 3), plt.imshow(cv2.cvtColor(center_area1, cv2.COLOR_BGR2RGB)), plt.title('Center Area ')
 plt.show()
 
-Input:-
-[Extractimage.ipynb](https://github.com/Mohitsharma1214/AI-ML-internship-task/blob/main/Input-image)
-Output:-
-(`[center_area1.png](https://github.com/Mohitsharma1214/AI-ML-internship-task/blob/main/center_area1.png)`) 
+
+Make sure:
+1. The `center_area1.png` file is in the root of your repository if you reference it directly as `center_area1.png`.
+2. If it’s in a folder like `images`, you need to update the path accordingly, such as `images/center_area1.png`.
+
+### Uploading and Checking:
+
+1. **Commit and Push**: Make sure you have committed the image file to your repository and pushed it to GitHub.
+2. **Check File Location**: Verify the location of the image file on GitHub.
+
+Here’s an example of how to add the image correctly if it’s in an `images` folder:
+
+```markdown
+![Center Area](images/center_area1.png)
